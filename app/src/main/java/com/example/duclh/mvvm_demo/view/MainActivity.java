@@ -23,14 +23,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mainViewModel = new MainViewModel(this,articles);
-        binding.setViewModel(mainViewModel);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         binding.contactList.setLayoutManager(layoutManager);
 
         ArticleAdapter adapter = new ArticleAdapter(articles, this);
-        BindingUtils.setAdapter(binding.contactList,adapter);
+        mainViewModel = new MainViewModel(this,articles,adapter);
+        binding.setViewModel(mainViewModel);
     }
 
 

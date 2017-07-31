@@ -2,7 +2,11 @@ package com.example.duclh.mvvm_demo.viewmodel;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
 import com.example.duclh.mvvm_demo.model.Article;
+import com.example.duclh.mvvm_demo.view.ArticleAdapter;
+
 import java.util.List;
 
 /**
@@ -12,15 +16,25 @@ import java.util.List;
 public class MainViewModel extends BaseObservable {
     public Context context;
     public List<Article> articles;
+    private ArticleAdapter mArticleAdapter;
 
-
-    public MainViewModel(Context context, List<Article> articles) {
-        this.context = context;
-        this.articles = articles;
-        addData();
+    @Bindable
+    public ArticleAdapter getArticleAdapter() {
+        return mArticleAdapter;
     }
 
-    void addData() {
+    public void setArticleAdapter(ArticleAdapter articleAdapter) {
+        mArticleAdapter = articleAdapter;
+    }
+
+    public MainViewModel(Context context, List<Article> articles, ArticleAdapter adapter) {
+        addData(context, articles, adapter);
+        this.context = context;
+        this.articles = articles;
+        this.mArticleAdapter = adapter;
+    }
+
+    void addData(Context context, List<Article> articles, ArticleAdapter adapter ) {
         articles.add(new Article("An outbreak of parasitic bees",
                 "This summer, we are facing a very serious issue. And it is nothing else but an outbreak of parasitic bees.",
                 true, "android.resource://com.example.duclh.mvvm_demo/drawable/bee","Varroa destructor and Varroa jacobsoni are parasitic mites that feed on the bodily fluids of adult, pupal and larval bees. Varroa mites can be seen with the naked eye as a small red or brown spot on the bee's thorax. Varroa mites are carriers for many viruses that are damaging to bees. For example, bees infected during their development will often have visibly deformed wings.\n" +

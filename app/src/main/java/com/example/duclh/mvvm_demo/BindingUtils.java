@@ -1,5 +1,6 @@
 package com.example.duclh.mvvm_demo;
 
+import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.duclh.mvvm_demo.view.ArticleAdapter;
@@ -9,8 +10,8 @@ import com.example.duclh.mvvm_demo.view.ArticleAdapter;
  */
 
 public class BindingUtils {
-
-   public static void setAdapter(RecyclerView recyclerView, ArticleAdapter adapter){
+    @BindingAdapter("setAdapter")
+    public static void setAdapter(RecyclerView recyclerView, ArticleAdapter adapter) {
         recyclerView.setAdapter(adapter);
     }
 }
