@@ -6,26 +6,22 @@ import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.duclh.mvvm_demo.BR;
 import com.example.duclh.mvvm_demo.R;
 import com.example.duclh.mvvm_demo.model.Article;
-import com.example.duclh.mvvm_demo.view.ReadMoreActivity;
 
 /**
  * Created by duclh on 31/07/2017.
  */
 
-public class ArticleViewModel extends BaseObservable {
-
+public class ReadMoreViewModel extends BaseObservable {
     private Article mArticle;
     private Context mContext;
 
-    public ArticleViewModel(Article mArticle, Context mContext) {
+    public ReadMoreViewModel(Article mArticle, Context mContext) {
         this.mArticle = mArticle;
         this.mContext = mContext;
     }
@@ -47,7 +43,7 @@ public class ArticleViewModel extends BaseObservable {
     }
 
     public String getExcerpt() {
-        return mArticle.getExcerpt();
+        return mArticle.getMoreRead();
     }
 
     public String getImageUrl() {
@@ -58,25 +54,4 @@ public class ArticleViewModel extends BaseObservable {
     public static void loadImage(ImageView view, String url) {
         Glide.with(view.getContext()).load(url).centerCrop().into(view);
     }
-
-    public void setRead(boolean read) {
-        // change title of already read article:
-        if (read && !mArticle.isRead()) {
-            setTitle("READ: " + getTitle());
-        }
-
-        mArticle.setRead(read);
-    }
-
-    public View.OnClickListener onReadMoreClicked() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(view.getContext(), "Opens article detail", Toast.LENGTH_SHORT).show();
-                mContext.startActivity(ReadMoreActivity.launchDetail(view.getContext(),mArticle));
-                setRead(true);
-            }
-        };
-    }
-
 }

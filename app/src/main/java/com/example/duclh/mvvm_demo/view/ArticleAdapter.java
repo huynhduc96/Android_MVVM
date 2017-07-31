@@ -1,4 +1,4 @@
-package com.example.duclh.mvvm_demo;
+package com.example.duclh.mvvm_demo.view;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.duclh.mvvm_demo.R;
 import com.example.duclh.mvvm_demo.databinding.ArticleItemBinding;
 import com.example.duclh.mvvm_demo.model.Article;
 import com.example.duclh.mvvm_demo.viewmodel.ArticleViewModel;
